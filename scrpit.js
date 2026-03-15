@@ -3,35 +3,34 @@
    Script Principal
    script.js
 ═══════════════════════════════════════════════ */
- 
+
 /* ══════════════════════════════════════════════
    STARFIELD — Campo de estrelas animado
 ══════════════════════════════════════════════ */
-
 (function () {
-    const canvas = document.getElementById('stars');
-    const ctx = canvas.getContext('2d');
-    let W, H, stars = [];
+  const canvas = document.getElementById('stars');
+  const ctx    = canvas.getContext('2d');
+  let W, H, stars = [];
 
-    function reszise() {
-        W = canvas.width = window.innerWidth
-        H = canvas.height = window.innerHeight
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  function initStars() {
+    stars = [];
+    for (let i = 0; i < 260; i++) {
+      stars.push({
+        x:  Math.random() * W,
+        y:  Math.random() * H,
+        r:  Math.random() * 1.2 + 0.2,
+        op: Math.random() * 0.7 + 0.1,
+        sp: Math.random() * 2   + 1,
+      });
     }
+  }
 
-    function iniStars () {
-        stars = [];
-        for (let i = 0; i <260; i++) {
-            stars.push({
-                x: Math.random() * W,
-                y: Math.random() * H,
-                r: Math.random() * 1.2 + 0.2,
-                op: Math.random() * 0.7 + 0.1,
-                sp: Math.random() * 2 + 1,
-            })
-        }
-    }
-
-      let t = 0;
+  let t = 0;
   function draw() {
     ctx.clearRect(0, 0, W, H);
     stars.forEach(s => {
@@ -44,14 +43,14 @@
     t++;
     requestAnimationFrame(draw);
   }
- 
+
   resize();
   initStars();
   draw();
   window.addEventListener('resize', () => { resize(); initStars(); });
 })();
- 
- 
+
+
 /* ══════════════════════════════════════════════
    FADE-IN — Animação de entrada ao rolar
 ══════════════════════════════════════════════ */
@@ -60,16 +59,16 @@ const fadeObserver = new IntersectionObserver(entries => {
     if (e.isIntersecting) e.target.classList.add('visible');
   });
 }, { threshold: 0.1 });
- 
+
 document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
- 
- 
+
+
 /* ══════════════════════════════════════════════
    ACTIVE NAV — Destaca o botão da seção visível
 ══════════════════════════════════════════════ */
 const allSections = document.querySelectorAll('[id]');
 const navLinks    = document.querySelectorAll('nav a');
- 
+
 window.addEventListener('scroll', () => {
   let current = '';
   allSections.forEach(section => {
@@ -81,8 +80,8 @@ window.addEventListener('scroll', () => {
     link.classList.toggle('active', link.getAttribute('href') === '#' + current);
   });
 });
- 
- 
+
+
 /* ══════════════════════════════════════════════
    MOUSE GLOW — Efeito de luz nos cards de planetas
 ══════════════════════════════════════════════ */
@@ -95,8 +94,8 @@ document.querySelectorAll('.planet-card').forEach(card => {
     card.style.setProperty('--my', y);
   });
 });
- 
- 
+
+
 /* ══════════════════════════════════════════════
    QUIZ — Verificação de respostas
 ══════════════════════════════════════════════ */
@@ -104,25 +103,25 @@ document.getElementById('btnVerificar').addEventListener('click', function () {
   const questions = document.querySelectorAll('.quiz-q');
   let score    = 0;
   let answered = 0;
- 
+
   questions.forEach(q => {
     const correct  = q.dataset.answer;
     const selected = q.querySelector('input[type="radio"]:checked');
     const options  = q.querySelectorAll('.quiz-option');
- 
+
     if (!selected) return; // pula se não respondida
     answered++;
- 
+
     options.forEach(opt => {
       const val = opt.querySelector('input').value;
       opt.classList.add('disabled');
       if (val === correct)                           opt.classList.add('correct');
       if (selected.value === val && val !== correct) opt.classList.add('wrong');
     });
- 
+
     if (selected.value === correct) score++;
   });
- 
+
   // Exige que todas as perguntas sejam respondidas
   if (answered < questions.length) {
     alert('Por favor, responda todas as perguntas antes de verificar!');
@@ -133,7 +132,7 @@ document.getElementById('btnVerificar').addEventListener('click', function () {
     });
     return;
   }
- 
+
   // Mensagens de resultado por pontuação
   const msgs = [
     'Continue estudando!',
@@ -143,16 +142,16 @@ document.getElementById('btnVerificar').addEventListener('click', function () {
     'Perfeito!',
   ];
   const msgIndex = Math.round((score / questions.length) * 4);
- 
+
   document.getElementById('scoreNum').textContent = score + ' / ' + questions.length;
   document.getElementById('scoreTxt').textContent  = msgs[msgIndex];
   document.getElementById('quizScore').style.display = 'block';
- 
+
   document.getElementById('btnVerificar').style.display = 'none';
   document.getElementById('btnReiniciar').style.display = 'inline-flex';
 });
- 
- 
+
+
 /* ── Reiniciar quiz ── */
 document.getElementById('btnReiniciar').addEventListener('click', function () {
   document.querySelectorAll('.quiz-q').forEach(q => {
@@ -161,7 +160,7 @@ document.getElementById('btnReiniciar').addEventListener('click', function () {
     });
     q.querySelectorAll('input[type="radio"]').forEach(r => (r.checked = false));
   });
- 
+
   document.getElementById('quizScore').style.display  = 'none';
   document.getElementById('btnVerificar').style.display = 'inline-flex';
   document.getElementById('btnReiniciar').style.display = 'none';
