@@ -1009,7 +1009,7 @@ footer span { color: var(--accent2); }
       <h2 class="section-title">QUIZ — SISTEMA SOLAR</h2>
       <div class="section-line"></div>
     </div>
-    <div class="quiz-container fade-in">
+    <div class="quiz-container">
 
       <div class="quiz-q" data-answer="b">
         <div class="quiz-question"><span>01.</span> Qual é o maior planeta do Sistema Solar?</div>
@@ -1084,7 +1084,7 @@ footer span { color: var(--accent2); }
 
   <footer>
     <p>EVOLUTION // SISTEMA SOLAR &nbsp;·&nbsp; <span>Projeto Escolar de Física — 2º ano do E.M.</span> &nbsp;·&nbsp; Imagens: NASA / ESA / Wikipedia Commons</p>
-    <p class="footer-credits">© 2026 &nbsp;·&nbsp; <span>Ysis &nbsp;·&nbsp; Ana Luísa &nbsp;·&nbsp; Samuel &nbsp;·&nbsp; Richarllysson &nbsp;·&nbsp; Geovanna</span></p>
+    <p class="footer-credits">© 2026 &nbsp;·&nbsp; <span>Ysis &nbsp;·&nbsp; Ana Luísa &nbsp;·&nbsp; Samuel &nbsp;·&nbsp; Richarlyson &nbsp;·&nbsp; Geovanna</span></p>
   </footer>
 
 </div><!-- /wrapper -->
@@ -1150,9 +1150,14 @@ const fadeObserver = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) e.target.classList.add('visible');
   });
-}, { threshold: 0.1 });
+}, { threshold: 0 });
 
 document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+
+// Fallback: garante visibilidade após 1.5s caso o observer não dispare
+setTimeout(() => {
+  document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+}, 1500);
 
 
 /* ══════════════════════════════════════════════
