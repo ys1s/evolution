@@ -605,7 +605,7 @@ section {
 }
 
 .quiz-option:hover { background: var(--gray2); border-color: var(--accent); }
-.quiz-option input[type="radio"] { display: none; }
+.quiz-option input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none; }
 
 .quiz-option .opt-letter {
   font-family: 'Share Tech Mono', monospace;
@@ -625,7 +625,18 @@ section {
   line-height: 1.5;
 }
 
-/* ── Estados de resultado ── */
+
+  /* ── Opção selecionada ── */
+  .quiz-option.selected {
+    background: rgba(37, 99, 235, .2);
+    border-color: var(--accent2);
+  }
+  .quiz-option.selected .opt-letter {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  /* ── Estados de resultado ── */
 .quiz-option.correct {
   background: rgba(34, 197, 94, .15) !important;
   border-color: #22c55e !important;
@@ -1014,60 +1025,60 @@ footer span { color: var(--accent2); }
       <div class="quiz-q" data-answer="b">
         <div class="quiz-question"><span>01.</span> Qual é o maior planeta do Sistema Solar?</div>
         <div class="quiz-options">
-          <label class="quiz-option"><input type="radio" name="q1" value="a"><span class="opt-letter">A</span><span class="opt-text">Saturno</span></label>
-          <label class="quiz-option"><input type="radio" name="q1" value="b"><span class="opt-letter">B</span><span class="opt-text">Júpiter</span></label>
-          <label class="quiz-option"><input type="radio" name="q1" value="c"><span class="opt-letter">C</span><span class="opt-text">Netuno</span></label>
-          <label class="quiz-option"><input type="radio" name="q1" value="d"><span class="opt-letter">D</span><span class="opt-text">Urano</span></label>
+          <label class="quiz-option" data-value="a"><input type="radio" name="q1" value="a"><span class="opt-letter">A</span><span class="opt-text">Saturno</span></label>
+          <label class="quiz-option" data-value="b"><input type="radio" name="q1" value="b"><span class="opt-letter">B</span><span class="opt-text">Júpiter</span></label>
+          <label class="quiz-option" data-value="c"><input type="radio" name="q1" value="c"><span class="opt-letter">C</span><span class="opt-text">Netuno</span></label>
+          <label class="quiz-option" data-value="d"><input type="radio" name="q1" value="d"><span class="opt-letter">D</span><span class="opt-text">Urano</span></label>
         </div>
       </div>
 
       <div class="quiz-q" data-answer="c">
         <div class="quiz-question"><span>02.</span> Qual planeta possui os ventos mais rápidos do Sistema Solar, chegando a 2.100 km/h?</div>
         <div class="quiz-options">
-          <label class="quiz-option"><input type="radio" name="q2" value="a"><span class="opt-letter">A</span><span class="opt-text">Júpiter</span></label>
-          <label class="quiz-option"><input type="radio" name="q2" value="b"><span class="opt-letter">B</span><span class="opt-text">Saturno</span></label>
-          <label class="quiz-option"><input type="radio" name="q2" value="c"><span class="opt-letter">C</span><span class="opt-text">Netuno</span></label>
-          <label class="quiz-option"><input type="radio" name="q2" value="d"><span class="opt-letter">D</span><span class="opt-text">Marte</span></label>
+          <label class="quiz-option" data-value="a"><input type="radio" name="q2" value="a"><span class="opt-letter">A</span><span class="opt-text">Júpiter</span></label>
+          <label class="quiz-option" data-value="b"><input type="radio" name="q2" value="b"><span class="opt-letter">B</span><span class="opt-text">Saturno</span></label>
+          <label class="quiz-option" data-value="c"><input type="radio" name="q2" value="c"><span class="opt-letter">C</span><span class="opt-text">Netuno</span></label>
+          <label class="quiz-option" data-value="d"><input type="radio" name="q2" value="d"><span class="opt-letter">D</span><span class="opt-text">Marte</span></label>
         </div>
       </div>
 
       <div class="quiz-q" data-answer="a">
         <div class="quiz-question"><span>03.</span> De que é composta a atmosfera de Titã, lua de Saturno?</div>
         <div class="quiz-options">
-          <label class="quiz-option"><input type="radio" name="q3" value="a"><span class="opt-letter">A</span><span class="opt-text">Nitrogênio, com lagos de metano líquido na superfície</span></label>
-          <label class="quiz-option"><input type="radio" name="q3" value="b"><span class="opt-letter">B</span><span class="opt-text">Oxigênio e vapor d'água</span></label>
-          <label class="quiz-option"><input type="radio" name="q3" value="c"><span class="opt-letter">C</span><span class="opt-text">Dióxido de carbono e ácido sulfúrico</span></label>
-          <label class="quiz-option"><input type="radio" name="q3" value="d"><span class="opt-letter">D</span><span class="opt-text">Hidrogênio e hélio, como Saturno</span></label>
+          <label class="quiz-option" data-value="a"><input type="radio" name="q3" value="a"><span class="opt-letter">A</span><span class="opt-text">Nitrogênio, com lagos de metano líquido na superfície</span></label>
+          <label class="quiz-option" data-value="b"><input type="radio" name="q3" value="b"><span class="opt-letter">B</span><span class="opt-text">Oxigênio e vapor d'água</span></label>
+          <label class="quiz-option" data-value="c"><input type="radio" name="q3" value="c"><span class="opt-letter">C</span><span class="opt-text">Dióxido de carbono e ácido sulfúrico</span></label>
+          <label class="quiz-option" data-value="d"><input type="radio" name="q3" value="d"><span class="opt-letter">D</span><span class="opt-text">Hidrogênio e hélio, como Saturno</span></label>
         </div>
       </div>
 
       <div class="quiz-q" data-answer="d">
         <div class="quiz-question"><span>04.</span> Por que Vênus é o planeta mais quente, e não Mercúrio (que é mais próximo do Sol)?</div>
         <div class="quiz-options">
-          <label class="quiz-option"><input type="radio" name="q4" value="a"><span class="opt-letter">A</span><span class="opt-text">Vênus possui um núcleo interno de ferro mais ativo</span></label>
-          <label class="quiz-option"><input type="radio" name="q4" value="b"><span class="opt-letter">B</span><span class="opt-text">Vênus gira mais rápido e gera mais calor por atrito</span></label>
-          <label class="quiz-option"><input type="radio" name="q4" value="c"><span class="opt-letter">C</span><span class="opt-text">Vênus está mais próximo da Via Láctea</span></label>
-          <label class="quiz-option"><input type="radio" name="q4" value="d"><span class="opt-letter">D</span><span class="opt-text">Sua densa atmosfera de CO₂ cria um intenso efeito estufa</span></label>
+          <label class="quiz-option" data-value="a"><input type="radio" name="q4" value="a"><span class="opt-letter">A</span><span class="opt-text">Vênus possui um núcleo interno de ferro mais ativo</span></label>
+          <label class="quiz-option" data-value="b"><input type="radio" name="q4" value="b"><span class="opt-letter">B</span><span class="opt-text">Vênus gira mais rápido e gera mais calor por atrito</span></label>
+          <label class="quiz-option" data-value="c"><input type="radio" name="q4" value="c"><span class="opt-letter">C</span><span class="opt-text">Vênus está mais próximo da Via Láctea</span></label>
+          <label class="quiz-option" data-value="d"><input type="radio" name="q4" value="d"><span class="opt-letter">D</span><span class="opt-text">Sua densa atmosfera de CO₂ cria um intenso efeito estufa</span></label>
         </div>
       </div>
 
       <div class="quiz-q" data-answer="b">
         <div class="quiz-question"><span>05.</span> Qual é o nome da maior montanha/vulcão do Sistema Solar, localizada em Marte?</div>
         <div class="quiz-options">
-          <label class="quiz-option"><input type="radio" name="q5" value="a"><span class="opt-letter">A</span><span class="opt-text">Monte Everest Marciano</span></label>
-          <label class="quiz-option"><input type="radio" name="q5" value="b"><span class="opt-letter">B</span><span class="opt-text">Olympus Mons</span></label>
-          <label class="quiz-option"><input type="radio" name="q5" value="c"><span class="opt-letter">C</span><span class="opt-text">Valles Marineris</span></label>
-          <label class="quiz-option"><input type="radio" name="q5" value="d"><span class="opt-letter">D</span><span class="opt-text">Mons Huygens</span></label>
+          <label class="quiz-option" data-value="a"><input type="radio" name="q5" value="a"><span class="opt-letter">A</span><span class="opt-text">Monte Everest Marciano</span></label>
+          <label class="quiz-option" data-value="b"><input type="radio" name="q5" value="b"><span class="opt-letter">B</span><span class="opt-text">Olympus Mons</span></label>
+          <label class="quiz-option" data-value="c"><input type="radio" name="q5" value="c"><span class="opt-letter">C</span><span class="opt-text">Valles Marineris</span></label>
+          <label class="quiz-option" data-value="d"><input type="radio" name="q5" value="d"><span class="opt-letter">D</span><span class="opt-text">Mons Huygens</span></label>
         </div>
       </div>
 
       <div class="quiz-q" data-answer="c">
         <div class="quiz-question"><span>06.</span> Como o Sistema Solar se formou, segundo a teoria científica aceita?</div>
         <div class="quiz-options">
-          <label class="quiz-option"><input type="radio" name="q6" value="a"><span class="opt-letter">A</span><span class="opt-text">Por uma explosão do Sol que lançou material para o espaço, formando os planetas</span></label>
-          <label class="quiz-option"><input type="radio" name="q6" value="b"><span class="opt-letter">B</span><span class="opt-text">Através da captura gravitacional de planetas vindos de outras estrelas</span></label>
-          <label class="quiz-option"><input type="radio" name="q6" value="c"><span class="opt-letter">C</span><span class="opt-text">Pelo colapso gravitacional de uma nebulosa de gás e poeira, há ~4,6 bilhões de anos</span></label>
-          <label class="quiz-option"><input type="radio" name="q6" value="d"><span class="opt-letter">D</span><span class="opt-text">Pelo resfriamento de uma estrela gigante que se fragmentou em planetas</span></label>
+          <label class="quiz-option" data-value="a"><input type="radio" name="q6" value="a"><span class="opt-letter">A</span><span class="opt-text">Por uma explosão do Sol que lançou material para o espaço, formando os planetas</span></label>
+          <label class="quiz-option" data-value="b"><input type="radio" name="q6" value="b"><span class="opt-letter">B</span><span class="opt-text">Através da captura gravitacional de planetas vindos de outras estrelas</span></label>
+          <label class="quiz-option" data-value="c"><input type="radio" name="q6" value="c"><span class="opt-letter">C</span><span class="opt-text">Pelo colapso gravitacional de uma nebulosa de gás e poeira, há ~4,6 bilhões de anos</span></label>
+          <label class="quiz-option" data-value="d"><input type="radio" name="q6" value="d"><span class="opt-letter">D</span><span class="opt-text">Pelo resfriamento de uma estrela gigante que se fragmentou em planetas</span></label>
         </div>
       </div>
 
@@ -1194,71 +1205,83 @@ document.querySelectorAll('.planet-card').forEach(card => {
 
 
 /* ══════════════════════════════════════════════
-   QUIZ — Verificação de respostas
+   QUIZ — Seleção e verificação de respostas
 ══════════════════════════════════════════════ */
+
+// Armazena respostas selecionadas por pergunta
+const quizAnswers = {};
+
+// Clique nas opções — usa data-value no label para máxima compatibilidade
+document.querySelectorAll('.quiz-option').forEach(function(label) {
+  label.addEventListener('click', function() {
+    const qDiv = this.closest('.quiz-q');
+    if (!qDiv || qDiv.classList.contains('answered')) return;
+    const qIndex = Array.from(document.querySelectorAll('.quiz-q')).indexOf(qDiv);
+    const val = this.getAttribute('data-value');
+
+    // Remove seleção anterior nesta pergunta
+    qDiv.querySelectorAll('.quiz-option').forEach(function(opt) {
+      opt.classList.remove('selected');
+    });
+
+    // Marca esta opção
+    this.classList.add('selected');
+    quizAnswers[qIndex] = val;
+
+    // Sincroniza o radio input
+    const radio = this.querySelector('input[type="radio"]');
+    if (radio) radio.checked = true;
+  });
+});
+
 document.getElementById('btnVerificar').addEventListener('click', function () {
   const questions = document.querySelectorAll('.quiz-q');
-  let score    = 0;
-  let answered = 0;
-
-  questions.forEach(q => {
-    const correct  = q.dataset.answer;
-    const selected = q.querySelector('input[type="radio"]:checked');
-    const options  = q.querySelectorAll('.quiz-option');
-
-    if (!selected) return; // pula se não respondida
-    answered++;
-
-    options.forEach(opt => {
-      const val = opt.querySelector('input').value;
-      opt.classList.add('disabled');
-      if (val === correct)                           opt.classList.add('correct');
-      if (selected.value === val && val !== correct) opt.classList.add('wrong');
-    });
-
-    if (selected.value === correct) score++;
-  });
-
-  // Exige que todas as perguntas sejam respondidas
-  if (answered < questions.length) {
+  
+  // Verifica se todas foram respondidas
+  if (Object.keys(quizAnswers).length < questions.length) {
     alert('Por favor, responda todas as perguntas antes de verificar!');
-    questions.forEach(q => {
-      q.querySelectorAll('.quiz-option').forEach(o => {
-        o.classList.remove('correct', 'wrong', 'disabled');
-      });
-    });
     return;
   }
 
-  // Mensagens de resultado por pontuação
-  const msgs = [
-    'Continue estudando!',
-    'Quase lá!',
-    'Muito bom!',
-    'Excelente!',
-    'Perfeito!',
-  ];
+  let score = 0;
+
+  questions.forEach(function(q, i) {
+    const correct = q.dataset.answer;
+    const chosen  = quizAnswers[i];
+    q.classList.add('answered');
+
+    q.querySelectorAll('.quiz-option').forEach(function(opt) {
+      const val = opt.getAttribute('data-value');
+      opt.classList.add('disabled');
+      if (val === correct)                opt.classList.add('correct');
+      if (val === chosen && val !== correct) opt.classList.add('wrong');
+    });
+
+    if (chosen === correct) score++;
+  });
+
+  const msgs = ['Continue estudando!','Quase lá!','Muito bom!','Excelente!','Perfeito!'];
   const msgIndex = Math.round((score / questions.length) * 4);
 
   document.getElementById('scoreNum').textContent = score + ' / ' + questions.length;
   document.getElementById('scoreTxt').textContent  = msgs[msgIndex];
   document.getElementById('quizScore').style.display = 'block';
-
   document.getElementById('btnVerificar').style.display = 'none';
   document.getElementById('btnReiniciar').style.display = 'inline-flex';
 });
 
-
-/* ── Reiniciar quiz ── */
 document.getElementById('btnReiniciar').addEventListener('click', function () {
-  document.querySelectorAll('.quiz-q').forEach(q => {
-    q.querySelectorAll('.quiz-option').forEach(o => {
-      o.classList.remove('correct', 'wrong', 'disabled');
+  document.querySelectorAll('.quiz-q').forEach(function(q) {
+    q.classList.remove('answered');
+    q.querySelectorAll('.quiz-option').forEach(function(o) {
+      o.classList.remove('correct', 'wrong', 'disabled', 'selected');
     });
-    q.querySelectorAll('input[type="radio"]').forEach(r => (r.checked = false));
+    q.querySelectorAll('input[type="radio"]').forEach(function(r) { r.checked = false; });
   });
+  // Limpa respostas
+  Object.keys(quizAnswers).forEach(function(k) { delete quizAnswers[k]; });
 
-  document.getElementById('quizScore').style.display  = 'none';
+  document.getElementById('quizScore').style.display   = 'none';
   document.getElementById('btnVerificar').style.display = 'inline-flex';
   document.getElementById('btnReiniciar').style.display = 'none';
 });
